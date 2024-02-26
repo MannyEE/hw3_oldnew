@@ -4,6 +4,7 @@
 #include "llrec.h"
 using namespace std;
 
+bool greater(int val);
 /**
  * Reads integers (separated by whitespace) from a file
  * into a linked list.
@@ -86,10 +87,27 @@ int main(int argc, char* argv[])
     print(head);
 
     // Test out your linked list code
+    Node* smaller = nullptr;
+    Node* larger = nullptr;
+
+    llpivot(head, smaller, larger, 11);
+
+    cout << "\nSmaller list: ";
+    print(smaller);
+    cout << "\nLarger list: ";
+    print(larger);
 
 
-
+    head = readList(argv[1]);
+    cout << "Original list: ";
+    print(head);
+    llfilter(head, greater);
     
     return 0;
 
+}
+
+bool greater(int val){
+    if(val>11) return true;
+    return false;
 }
