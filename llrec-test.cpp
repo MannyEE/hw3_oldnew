@@ -4,6 +4,7 @@
 #include "llrec.h"
 using namespace std;
 
+
 bool greater(int val);
 /**
  * Reads integers (separated by whitespace) from a file
@@ -69,7 +70,7 @@ void dealloc(Node* head)
 // -----------------------------------------------
 
 
-
+struct even{bool operator()(int cur) {return cur % 2 == 0;}};
 
 
 int main(int argc, char* argv[])
@@ -96,18 +97,17 @@ int main(int argc, char* argv[])
     print(smaller);
     cout << "\nLarger list: ";
     print(larger);
-
-
-    head = readList(argv[1]);
-    cout << "Original list: ";
+    cout << "\nNew Head: ";
     print(head);
-    llfilter(head, greater);
+
+    even testers;
+    head = readList(argv[1]);
+    // cout << "\nOriginal list: ";
+    // print(head);
+    llfilter(head, testers);
+    // cout << "\nFiltered list: ";
+    // print(head);
     
     return 0;
 
-}
-
-bool greater(int val){
-    if(val>11) return true;
-    return false;
 }

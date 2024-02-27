@@ -3,6 +3,7 @@
 #ifndef NULL
 #define NULL 0
 #endif
+#include "iostream"
 
 /**
  * Node struct for both problems
@@ -86,17 +87,22 @@ Node* llfilter(Node* head, Comp pred)
 
     if (head == nullptr) return nullptr;
 
-    if (!pred(head->val)) {
-        Node* curhead = head;
-        head = head->next;
-        delete curhead;
+    Node* curlist = llfilter(head->next, pred);
 
-        llfilter(head, pred);
+    // std::cout << head->val;
 
+    head->next = curlist;
 
+    if(!pred(head->val)) {
+        // std::cout << " " << "Head\n";
+        return head;
     } else {
-        llfilter(head->next, pred);
+        // std::cout << " " << "prev Head\n";
+        delete head;
+        return curlist;
     }
+
+    
     return head;
 
 

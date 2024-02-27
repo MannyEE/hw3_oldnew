@@ -2,9 +2,10 @@
 #define HEAP_H
 #include <functional>
 #include <stdexcept>
+#include <vector>
 
 template <typename T, typename PComparator = std::less<T> >
-class Heap
+class Heap : private std::vector
 {
 public:
   /**
@@ -68,6 +69,18 @@ private:
 };
 
 // Add implementation of member functions here
+template <typename T, typename PComparator>
+bool Heap<T,PComparator>::empty() const
+{
+    return (std::vector<T>::size() == 0);
+}
+
+template <typename T, typename PComparator>
+size_t Heap<T,PComparator>::size() const
+{
+    return std::vector<T>::size();
+}
+
 
 
 // We will start top() for you to handle the case of 
@@ -81,12 +94,11 @@ T const & Heap<T,PComparator>::top() const
     // ================================
     // throw the appropriate exception
     // ================================
-
-
+    throw std::underflow_error("Cannot get top of empty list");
   }
   // If we get here we know the heap has at least 1 item
   // Add code to return the top element
-
+    return std::vector<T>::at(0);
 
 
 }
