@@ -158,6 +158,7 @@ TEST_F(HeapTest, Duplicates)
 	EXPECT_EQ(9, heap.top());
 
 	heap.pop();
+    // std::cout << heap.top() << "\n";
 	heap.pop();
 
 	EXPECT_EQ(20, heap.top());
